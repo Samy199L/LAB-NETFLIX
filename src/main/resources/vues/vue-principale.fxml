@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<?import javafx.scene.image.Image?>
+
+<?import javafx.scene.control.TabPane?>
+
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.layout.Region?>
+<TabPane xmlns="http://javafx.com/javafx"
+         xmlns:fx="http://javafx.com/fxml"
+         fx:controller="org.example.NetflixLab.controller.Controller"
+         tabClosingPolicy="UNAVAILABLE">
+
+    <Tab text="Catalogue">
+        <BorderPane prefWidth="1000" prefHeight="650">
+
+            <top>
+                <HBox alignment="CENTER_LEFT" spacing="10" maxWidth="Infinity" styleClass="top-bar">
+                    <padding><Insets bottom="10" left="10" right="10" top="10" /></padding>
+
+                    <HBox fx:id="logoBox" prefHeight="42.0" prefWidth="120.0">
+                        <children>
+                            <ImageView fx:id="imgLogo" fitHeight="42.0" fitWidth="66.0" pickOnBounds="true" preserveRatio="true">
+                                <image>
+                                    <Image url="@../Samflix.png"/>
+                                </image>
+                            </ImageView>
+                        </children>
+                    </HBox>
+
+                    <Region HBox.hgrow="ALWAYS" />
+
+                    <TextField fx:id="champRecherche" prefWidth="250" promptText="Rechercher un titre ou realisateur..." />
+                    <ComboBox fx:id="comboGenre" promptText="Genre" />
+                    <ChoiceBox fx:id="choixType" />
+                    <Label text="Note min:" />
+                    <Slider fx:id="sliderNoteMin" max="10" min="0" prefWidth="120" value="0" />
+                    <Label fx:id="labelNoteMin" text="0.0" />
+
+                </HBox>
+            </top>
+
+                <center>
+                    <TableView fx:id="tableMedias">
+                        <columns>
+                            <TableColumn fx:id="colTitre" prefWidth="250" text="Titre" />
+                            <TableColumn fx:id="colAnnee" prefWidth="80" text="Annee" />
+                            <TableColumn fx:id="colGenre" prefWidth="120" text="Genre" />
+                            <TableColumn fx:id="colNote" prefWidth="70" text="Note" />
+                            <TableColumn fx:id="colType" prefWidth="80" text="Type" />
+                        </columns>
+                    </TableView>
+                </center>
+
+                <right>
+                    <VBox prefHeight="560.0" prefWidth="250" spacing="8" styleClass="details-panel">
+                        <padding><Insets bottom="10" left="10" right="10" top="10" /></padding>
+
+                        <Label style="-fx-font-weight: bold; -fx-font-size: 14px;" text="Details" />
+                        <Label fx:id="labelDetailTitre" text="Titre : -" />
+                        <Label fx:id="labelDetailAnnee" text="Annee : -" />
+                        <Label fx:id="labelDetailGenre" text="Genre : -" />
+                        <Label fx:id="labelDetailRealisateur" text="Realisateur : -" />
+                        <Label fx:id="labelDetailDuree" text="Duree/Episodes : -" />
+                        <Label fx:id="labelDetailSynopsis" text="Synopsis : -" wrapText="true" />
+
+                        <Button onAction="#onAjouterWatchlist" text="Ajouter a ma watchlist" />
+
+                        <Separator />
+
+                        <Label style="-fx-font-weight: bold;" text="Tris" />
+                        <Button onAction="#onTrierTitre" text="Trier par titre" />
+                        <Button onAction="#onTrierNote" text="Trier par note" />
+                        <Button onAction="#onTrierAnnee" text="Trier par annee" />
+                    </VBox>
+                </right>
+
+                <bottom>
+                    <HBox alignment="CENTER" spacing="10">
+                        <padding><Insets bottom="10" left="10" right="10" top="10" /></padding>
+
+                        <Button onAction="#onPagePrecedente" text="Precedent" />
+                        <Label fx:id="labelPage" text="Page 1 / 1" />
+                        <Button onAction="#onPageSuivante" text="Suivant" />
+                    </HBox>
+                </bottom>
+
+            </BorderPane>
+
+    </Tab>
+
+    <Tab text="Ma Watchlist">
+        <BorderPane styleClass="vue-racine">
+            <center>
+                <TableView fx:id="tableWatchlist">
+                    <columns>
+                        <TableColumn fx:id="colWatchlistTitre" text="Titre" prefWidth="300"/>
+                        <TableColumn fx:id="colWatchlistAnnee" text="Annee" prefWidth="100"/>
+                        <TableColumn fx:id="colWatchlistGenre" text="Genre" prefWidth="150"/>
+                    </columns>
+                </TableView>
+            </center>
+            <bottom>
+                <HBox alignment="CENTER" spacing="10">
+                    <padding><Insets top="10" bottom="10"/></padding>
+                    <Button text="Retirer de la watchlist" onAction="#onRetirerWatchlist"/>
+                </HBox>
+            </bottom>
+        </BorderPane>
+    </Tab>
+
+    <Tab text="Benchmark">
+        <BorderPane styleClass="vue-racine">
+            <center>
+                <TableView fx:id="tableBenchmark">
+                    <columns>
+                        <TableColumn fx:id="colBenchAlgo" text="Algorithme" prefWidth="200"/>
+                        <TableColumn fx:id="colBenchComplexite" text="Complexite" prefWidth="150"/>
+                        <TableColumn fx:id="colBenchDuree" text="Duree (ms)" prefWidth="150"/>
+                    </columns>
+                </TableView>
+            </center>
+            <bottom>
+                <HBox alignment="CENTER" spacing="10">
+                    <padding><Insets top="10" bottom="10"/></padding>
+                    <Button text="Lancer le benchmark" onAction="#onLancerBenchmark"/>
+                </HBox>
+            </bottom>
+        </BorderPane>
+    </Tab>
+</TabPane>
+
