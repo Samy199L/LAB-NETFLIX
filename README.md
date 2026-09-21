@@ -23,6 +23,12 @@ Nom du sujet : "Netflix Catalog"
 URL : https://github.com/Samy199L/LAB-NETFLIX.git
 
 ---
+✅Migration CSV → PostgreSQL (pattern DAO) 
+
+✅Opérations CRUD depuis l'interface
+
+❌Bonus
+---
 ````
 netflix-catalog-lab2/
 ├── pom.xml
