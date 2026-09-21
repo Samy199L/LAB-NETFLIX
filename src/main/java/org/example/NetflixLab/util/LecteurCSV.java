@@ -1,5 +1,6 @@
 package org.example.NetflixLab.util;
-import org.example.NetflixLab.service.Donnees;
+import org.example.NetflixLab.dao.MediaDAO;
+
 import org.example.NetflixLab.model.*;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -8,18 +9,17 @@ import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 
-
-
-public class LecteurCSV implements Donnees {
+public class LecteurCSV implements MediaDAO {
     private final String cheminRessource;
 
     public LecteurCSV(String cheminRessource) {
         this.cheminRessource = cheminRessource;
     }
 
-    @Override
+
     public List<Media> charger() {
         List<Media> medias = new ArrayList<>();
 
@@ -53,6 +53,30 @@ public class LecteurCSV implements Donnees {
         return medias;
     }
 
+    @Override
+    public List<Media> trouverTous() {
+        return charger();
+    }
+
+    @Override
+    public Optional<Media> trouverParId(int id) {
+        return trouverTous().stream().filter(m -> m.getId() == id).findFirst();
+    }
+
+    @Override
+    public Media ajouter(Media media) {
+        throw new UnsupportedOperationException("Le mode CSV est en lecture seule.");
+    }
+
+    @Override
+    public void modifier(Media media) {
+        throw new UnsupportedOperationException("Le mode CSV est en lecture seule.");
+    }
+
+    @Override
+    public void supprimer(int id) {
+        throw new UnsupportedOperationException("Le mode CSV est en lecture seule.");
+    }
 
     private List<String> parserLigne(String ligne) {
         List<String> champs = new ArrayList<>();

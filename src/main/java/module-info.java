@@ -1,6 +1,8 @@
 module org.example.NetflixLab {
     requires javafx.controls;
     requires javafx.fxml;
+    requires org.postgresql.jdbc;
+    requires java.sql;
 
     opens org.example.NetflixLab to javafx.fxml;
     opens org.example.NetflixLab.controller to javafx.fxml;

@@ -80,7 +80,12 @@
                         <Label fx:id="labelDetailSynopsis" text="Synopsis : -" wrapText="true" />
 
                         <Button onAction="#onAjouterWatchlist" text="Ajouter a ma watchlist" />
+                        <Separator />
 
+                        <Label style="-fx-font-weight: bold;" text="Gestion" />
+                        <Button onAction="#onAjouterMedia" text="Ajouter un media" />
+                        <Button onAction="#onModifierMedia" text="Modifier" />
+                        <Button onAction="#onSupprimerMedia" text="Supprimer" />
                         <Separator />
 
                         <Label style="-fx-font-weight: bold;" text="Tris" />
